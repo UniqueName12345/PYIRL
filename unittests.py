@@ -19,7 +19,20 @@ class TestBooleanInput(unittest.TestCase):
     def test_boolean_input_returns_default_value(self, mock_input):
         result = pyirl.boolean_input("Enter nothing: ", default=True)
         self.assertTrue(result)
+class TestInputWithDefault(unittest.TestCase):
 
+    def test_input_with_default(self):
+        # Testing when user provides input
+        with patch('builtins.input', return_value='Hello'):
+            self.assertEqual(pyirl.input_with_default("Enter a message: "), 'Hello')
+
+        # Testing when user does not provide input but default value is provided
+        with patch('builtins.input', return_value=''):
+            self.assertEqual(pyirl.input_with_default("Enter a message: ", default="Default"), 'Default')
+
+        # Testing when user does not provide input and default value is not provided
+        with patch('builtins.input', return_value=''):
+            self.assertEqual(pyirl.input_with_default("Enter a message: "), '')
 
 if __name__ == '__main__':
     unittest.main()
