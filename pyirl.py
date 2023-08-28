@@ -29,6 +29,7 @@ def boolean_input(message, default=False):
             return default
 
 
+
 def input_with_default(message, default=""):
     """
     Prompts the user for input and returns the input value or the default value if the user does not provide any input.
